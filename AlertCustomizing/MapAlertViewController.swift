@@ -99,7 +99,9 @@ class MapAlertViewController: UIViewController {
         alert.setValue(contentVC, forKey: "contentViewController")
         
         // OK 버튼을 추가한다.
-        let okAction = UIAlertAction(title: "OK", style: .default)
+        let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
+            print(">>> sliderValue = \(contentVC.sliderValue)")
+        }
         alert.addAction(okAction)
         
         self.present(alert, animated: false)
