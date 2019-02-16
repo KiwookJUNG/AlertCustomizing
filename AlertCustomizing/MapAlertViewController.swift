@@ -24,9 +24,19 @@ class MapAlertViewController: UIViewController {
         alertBtn.setTitle("Map Alert", for: .normal)
         alertBtn.addTarget(self, action: #selector(mapAlert(_:)), for: .touchUpInside)
         
+        // 이미지 알림창 버튼 생성
+        let imageBtn = UIButton(type: .system)
+        
+        // 이미지 알림창 버튼 속성 설정
+        imageBtn.frame = CGRect(x: 0, y: 200, width: 100, height: 30)
+        imageBtn.center.x = self.view.frame.width / 2
+        imageBtn.setTitle("Image Alert", for: .normal)
+        imageBtn.addTarget(self, action: #selector(imageAlert(_:)), for: .touchUpInside)
+        
         
         
         self.view.addSubview(alertBtn)
+        self.view.addSubview(imageBtn)
     }
     
     // 버튼을 눌렀을 때 실행될 액션 메소드
@@ -55,6 +65,19 @@ class MapAlertViewController: UIViewController {
         self.present(alert, animated: false)
         
         
+    }
+    
+    @objc func imageAlert(_ sender: Any) {
+        let alert = UIAlertController(title: nil, message: "이번 글의 평점은 다음과 같습니다.", preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(okAction)
+        
+        // 콘텐츠 뷰 영역에 들어갈 뷰 컨트롤러를 생성하고, 알림창에 등록한다.
+        let contentVC = ImageViewController()
+        alert.setValue(contentVC, forKeyPath: "contentViewController")
+        
+        self.present(alert, animated: false)
     }
     
     
